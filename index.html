@@ -1,0 +1,30 @@
+<head>
+<script>
+function draw(input) {
+	const raw = input.files[0];
+	const reader = new FileReader();
+	reader.readAsText(raw);
+	reader.onload = function() {
+		obj = JSON.parse(reader.result);
+		const canvas = document.getElementById('ladder');
+		const ladder = canvas.getContext('2d');
+		ladder.fillStyle = "rgb(0, 0, 0)";
+		obj.loop.forEach(line => {
+			ladder.fillText(line.define, 200, 50);
+			ladder.beginPath();
+			ladder.arc(225, 70, 10, 2.3, 3.9);
+			ladder.stroke();
+			ladder.beginPath();
+			ladder.arc(225, 70, 10, 5.5, 7);
+			ladder.stroke();
+		});
+	};
+}
+</script>
+</head>
+<body>
+	<input type='file' id='myfile' name='myfile' accept='.ladder' onChange="draw(this)">
+	<br>
+	<canvas id='ladder' width='300' height='300' 
+		style='background-color:lemonchiffon'></canvas>
+</body>
