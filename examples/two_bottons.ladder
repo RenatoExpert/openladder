@@ -1,0 +1,44 @@
+{
+	"protocol": "openladder",
+	"version": "1.0.0",
+	"project-author": {
+		"name": "Renato Ramos Ribeiro Araujo",
+		"email": "renatorraraujo@gmail.com",
+		"created": "Nov 3 2022"
+	},
+	"tags": {
+		"green_light": {
+			"address": "%Q0.0",
+			"type": "bool"
+		},
+		"turnON_btn": {
+			"address": "%I0.0",
+			"type": "bool"
+		},
+		"turnOFF_btn": {
+			"address": "%I0.0",
+			"type": "bool"
+		}
+	},
+	"loop": [
+		{
+			"define": "green_light",
+			"expression": {
+				"fuction": "AND",
+				"args": [
+					{
+						"function": "OR",
+						"args":	[
+							"turnON_btn",
+							"green_light"
+						]
+					},
+					{
+						"function": "NOT",
+						"arg": "turn_OFF_btn"
+					}
+				]
+			}
+		}
+	]
+}
